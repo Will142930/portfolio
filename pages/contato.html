@@ -1,0 +1,174 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Inclui os 3 ficheiros obrigatórios do PHPMailer
+require_once __DIR__ . '/../PHPMailer/Exception.php';
+require_once __DIR__ . '/../PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../PHPMailer/SMTP.php';
+
+$mensagem_status = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitização e validação dos dados recebidos
+    $nome    = filter_var(trim($_POST['nome'] ?? ''), FILTER_SANITIZE_SPECIAL_CHARS);
+    $email   = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    $projeto = filter_var(trim($_POST['mensagem'] ?? ''), FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if ($nome && $email && $projeto) {
+        
+        // CONFIGURAÇÕES DO SEU GMAIL
+        $meu_email = "williamgabrielnascimentodoria@gmail.com";
+        $smtp_pass = "ebnq eujg xpgl csov"; // <--- Cole a sua Senha de App de 16 dígitos aqui
+
+        try {
+            // ====================================================
+            // 1. E-MAIL DE NOTIFICAÇÃO PARA SI (ADMIN)
+            // ====================================================
+            $mailAdmin = new PHPMailer(true);
+            
+            $mailAdmin->isSMTP();
+            $mailAdmin->Host       = 'smtp.gmail.com';
+            $mailAdmin->SMTPAuth   = true;
+            $mailAdmin->Username   = $meu_email;
+            $mailAdmin->Password   = $smtp_pass;
+            $mailAdmin->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mailAdmin->Port       = 587;
+            $mailAdmin->CharSet    = 'UTF-8';
+
+            $mailAdmin->setFrom($meu_email, 'Portfólio | William Gabriel');
+            $mailAdmin->addAddress($meu_email);
+            $mailAdmin->addReplyTo($email, $nome);
+
+            $mailAdmin->isHTML(true);
+            $mailAdmin->Subject = "🚀 Novo Projeto Recebido: $nome";
+
+            // Template HTML do E-mail para Você
+            $mailAdmin->Body = "
+            <div style='background-color: #0d0e15; padding: 40px 20px; font-family: \"Segoe UI\", Helvetica, Arial, sans-serif; color: #f5f5f7;'>
+                <div style='max-width: 600px; margin: 0 auto; background: #161824; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);'>
+                    <div style='background: linear-gradient(135deg, #7000ff, #4a00e0); padding: 25px 30px;'>
+                        <h2 style='margin: 0; color: #ffffff; font-size: 22px; font-weight: 600;'>⚡ Novo Pedido de Orçamento</h2>
+                        <p style='margin: 5px 0 0; color: rgba(255,255,255,0.8); font-size: 14px;'>Alguém preencheu o formulário no seu site!</p>
+                    </div>
+                    
+                    <div style='padding: 30px;'>
+                        <div style='margin-bottom: 20px; padding: 15px; background: #0d0e15; border-radius: 8px; border-left: 4px solid #7000ff;'>
+                            <strong style='color: #86868b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;'>Cliente:</strong>
+                            <p style='margin: 5px 0 0; font-size: 16px; color: #ffffff; font-weight: 600;'>{$nome}</p>
+                        </div>
+
+                        <div style='margin-bottom: 25px; padding: 15px; background: #0d0e15; border-radius: 8px; border-left: 4px solid #00d2ff;'>
+                            <strong style='color: #86868b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;'>E-mail de Contacto:</strong>
+                            <p style='margin: 5px 0 0; font-size: 16px;'><a href='mailto:{$email}' style='color: #00d2ff; text-decoration: none;'>{$email}</a></p>
+                        </div>
+
+                        <div style='padding: 20px; background: #0d0e15; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);'>
+                            <strong style='color: #86868b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;'>Descrição do Projeto / Mensagem:</strong>
+                            <p style='margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #d1d1d6; white-space: pre-line;'>" . nl2br($projeto) . "</p>
+                        </div>
+
+                        <div style='margin-top: 30px; text-align: center;'>
+                            <a href='mailto:{$email}?subject=Re:%20Orçamento%20de%20Projeto' style='display: inline-block; background: #7000ff; color: #ffffff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(112,0,255,0.4);'>Responder ao Cliente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>";
+
+            $mailAdmin->send();
+
+            // ====================================================
+            // 2. E-MAIL DE CONFIRMAÇÃO PARA O CLIENTE
+            // ====================================================
+            $mailCliente = new PHPMailer(true);
+            $mailCliente->isSMTP();
+            $mailCliente->Host       = 'smtp.gmail.com';
+            $mailCliente->SMTPAuth   = true;
+            $mailCliente->Username   = $meu_email;
+            $mailCliente->Password   = $smtp_pass;
+            $mailCliente->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mailCliente->Port       = 587;
+            $mailCliente->CharSet    = 'UTF-8';
+
+            $mailCliente->setFrom($meu_email, 'William Gabriel | Desenvolvedor Full Stack');
+            $mailCliente->addAddress($email, $nome);
+
+            $mailCliente->isHTML(true);
+            $mailCliente->Subject = "Recebi a sua mensagem, {$nome}! 👋";
+
+            // Template HTML do E-mail para o Cliente
+            $mailCliente->Body = "
+            <div style='background-color: #f4f5f9; padding: 40px 20px; font-family: \"Segoe UI\", Helvetica, Arial, sans-serif; color: #2c3e50;'>
+                <div style='max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08);'>
+                    
+                    <div style='background: #0d0e15; padding: 30px; text-align: center; border-bottom: 3px solid #7000ff;'>
+                        <h1 style='margin: 0; color: #ffffff; font-size: 24px; font-weight: 700;'>William Gabriel<span style='color: #7000ff;'>.dev</span></h1>
+                    </div>
+
+                    <div style='padding: 35px 30px;'>
+                        <h2 style='margin-top: 0; color: #1a1a24; font-size: 20px;'>Olá, {$nome}! 👋</h2>
+                        <p style='font-size: 15px; line-height: 1.6; color: #555566;'>Obrigado por entrar em contacto através do meu portfólio. Já recebi os detalhes do seu projeto e irei analisar todas as informações atentamente.</p>
+                        
+                        <p style='font-size: 15px; line-height: 1.6; color: #555566;'>Em breve entrarei em contacto por este e-mail para conversarmos melhor sobre a sua ideia!</p>
+
+                        <div style='margin: 25px 0; padding: 20px; background: #f8f9fc; border-radius: 8px; border-left: 4px solid #7000ff;'>
+                            <strong style='color: #7000ff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;'>Resumo da sua mensagem:</strong>
+                            <p style='margin: 8px 0 0; font-size: 14px; font-style: italic; color: #666677;'>" . nl2br($projeto) . "</p>
+                        </div>
+
+                        <hr style='border: none; border-top: 1px solid #eeeeee; margin: 30px 0;'>
+
+                        <p style='margin: 0; font-size: 14px; color: #888899;'>Com os melhores cumprimentos,</p>
+                        <strong style='font-size: 16px; color: #1a1a24; display: block; margin-top: 4px;'>William Gabriel</strong>
+                        <span style='font-size: 13px; color: #7000ff;'>Desenvolvedor Full Stack</span>
+                    </div>
+
+                    <div style='background: #f8f9fc; padding: 20px; text-align: center; font-size: 12px; color: #aaaa22;'>
+                        <p style='margin: 0;'>Este é um e-mail automático de confirmação enviado pelo site.</p>
+                    </div>
+                </div>
+            </div>";
+
+            $mailCliente->send();
+
+            $mensagem_status = '<div style="color: #25d366; background: rgba(37, 211, 102, 0.1); border: 1px solid #25d366; padding: 14px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: 500;">
+                ✨ Mensagem enviada com sucesso! Uma cópia de confirmação foi enviada para o seu e-mail.
+            </div>';
+
+        } catch (Exception $e) {
+            $mensagem_status = '<div style="color: #ff5f56; background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; padding: 14px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                ⚠️ Ocorreu um erro ao enviar a mensagem: ' . $mailAdmin->ErrorInfo . '
+            </div>';
+        }
+
+    } else {
+        $mensagem_status = '<div style="color: #ff5f56; background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; padding: 14px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            ⚠️ Por favor, preencha todos os campos corretamente.
+        </div>';
+    }
+}
+?>
+
+<section id="contato" class="contact-section">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2 class="section-title">Vamos criar algo? <span>/</span></h2>
+            <p>Estou sempre aberto a novos desafios e projetos de alto nível. Deixe sua mensagem.</p>
+        </div>
+
+        <form class="contact-form" action="" method="POST">
+            <?= $mensagem_status; ?>
+
+            <div class="input-group">
+                <input type="text" name="nome" required placeholder="Seu Nome">
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" required placeholder="Seu E-mail">
+            </div>
+            <div class="input-group">
+                <textarea name="mensagem" required placeholder="Fale sobre o seu projeto..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Meu Portfólio | William Gabriel - Desenvolvedor Web</title>
+    <meta name="description" content="Portfólio profissional de desenvolvimento web, criação de sites e sistemas sob medida.">
+    <meta name="author" content="William Gabriel Do Nascimento Doria">
+    
+    <link rel="icon" type="image/png" href="uploads/wd.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="#inicio" class="logo">William<span>Gabriel</span></a>
+                
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Disponível para Projetos
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#sobre">Sobre Mim</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        
+        <section id="inicio" class="hero-section">
+            <div class="hero-text">
+                <h1>William Gabriel Do Nascimento Doria</h1>
+                <p>Eu crio soluções digitais de alto padrão, unindo estética e performance otimizada para transformar ideias em experiências online inesqueciveis.</p>
+                <div class="hero-cta">
+                    <a href="#projetos" class="btn-primary">Ver Portfólio</a>
+                    <a href="#contato" class="btn-secondary">Planos de Desenvolvimento</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="profile-card-3d">
+                    <div class="profile-glow"></div>
+                    <img src="./uploads/eu.jpg" alt="Foto de Perfil de William Gabriel" class="profile-img">
+                    <div class="profile-info">
+                        <h3>William Gabriel Do Nascimento Doria</h3>
+                        <p>Developer & UI Designer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="counters-section">
+            <div class="counters-grid">
+                <div class="counter-card">
+                    <h3 class="counter" data-target="4">0</h3>
+                    <p>Projetos Entregues</p>
+                </div>
+                <div class="counter-card">
+                    <h3 class="counter" data-target="98">0</h3>
+                    <p>% Satisfação</p>
+                </div>
+                <div class="counter-card">
+                    <h3 class="counter" data-target="1">0</h3>
+                    <p>Anos de Experiência</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section scroll-reveal">
+            <h2 class="section-title reveal-text">Sobre Mim <span>/</span></h2>
+            
+            <div class="about-container">
+                <div class="about-content reveal-left">
+                    <div class="glass-card about-main-text">
+                        <h3>Criando experiências que <span class="text-gradient">desafiam o comum.</span></h3>
+                        <p>Sou um desenvolvedor focado em unir o poder do Back-end com a elegância do Front-end. Meu objetivo não é apenas entregar um código que funciona, mas uma obra de arte digital que seja intuitiva e visualmente impactante.</p>
+                        <p>Especialista em criar interfaces que utilizam profundidade 3D e performance otimizada para garantir que sua marca se destaque no oceano digital.</p>
+                    </div>
+                </div>
+
+                <div class="about-options reveal-right">
+                    <div class="option-item hover-box">
+                        <div class="option-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="option-info">
+                            <h4>Alta Performance</h4>
+                            <p>Sites leves que carregam em milissegundos.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-item hover-box">
+                        <div class="option-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="option-info">
+                            <h4>Design Imersivo</h4>
+                            <p>Interfaces 3D que prendem a atenção.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-item hover-box">
+                        <div class="option-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="option-info">
+                            <h4>Código Seguro</h4>
+                            <p>Estruturas modernas e protegidas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2 class="section-title">Minha <span>Jornada</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <h3>Desenvolvedor Fullstack</h3>
+                        <p>Criação de sistemas modernos, APIs e interfaces de alta performance.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - 2024</span>
+                        <h3>Freelancer Front-end</h3>
+                        <p>Desenvolvimento de landing pages, portfólios e sites institucionais responsivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            </section>
+
+        <section id="contato" class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title">Vamos criar algo? <span>/</span></h2>
+                    <p>Estou sempre aberto a novos desafios e projetos de alto nível. Deixe sua mensagem.</p>
+                </div>
+
+                <form class="contact-form" name="contato" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contato" />
+
+                    <div class="input-group">
+                        <input type="text" name="nome" required placeholder="Seu Nome">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" required placeholder="Seu E-mail">
+                    </div>
+                    <div class="input-group">
+                        <textarea name="mensagem" required placeholder="Fale sobre o seu projeto..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#inicio" class="logo">William<span>Gabriel</span></a>
+                <p>Transformando ideias em experiências digitais de alto impacto.</p>
+            </div>  
+
+            <div class="footer-socials">
+                <a href="https://github.com/Will142930" target="_blank" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/william-gabriel-85b825399" target="_blank" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://instagram.com/williamgabriel8919" target="_blank" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/5519998471570" target="_blank" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 William Gabriel. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="fab-container" id="fabContainer">
+        <div class="fab-options">
+            <a href="https://wa.me/5519998471570?text=Olá,%20vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento!" 
+               target="_blank" 
+               class="fab-btn whatsapp" 
+               title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/williamgabriel8919" 
+               target="_blank" 
+               class="fab-btn instagram" 
+               title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com/in/william-gabriel-85b825399" 
+               target="_blank" 
+               class="fab-btn linkedin" 
+               title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Will142930" 
+               target="_blank" 
+               class="fab-btn github" 
+               title="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+
+        <button class="fab-main" id="fabMain" aria-label="Abrir Menu">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

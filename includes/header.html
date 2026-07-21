@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Meu Portfólio | Desenvolvedor Web</title>
+    <meta name="description" content="Portfólio profissional de desenvolvimento web, criação de sites e sistemas sob medida.">
+    <meta name="author" content="William Gabriel">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">William<span>Gabriel</span></a>
+            
+            <div class="nav-links">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#sobre">Sobre Mim</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
