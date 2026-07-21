@@ -323,20 +323,28 @@
                     <p>Estou sempre aberto a novos desafios e projetos de alto nível. Deixe sua mensagem.</p>
                 </div>
 
-                <form class="contact-form" name="contato" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="contato" />
+                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+                    <input type="hidden" name="access_key" value="SUA_ACCESS_KEY_AQUI">
+
+                    <input type="hidden" name="subject" value="Novo Contato do Portfólio - William Gabriel">
+
+                    <input type="hidden" name="from_name" value="William Gabriel | Desenvolvedor Web">
 
                     <div class="input-group">
-                        <input type="text" name="nome" required placeholder="Seu Nome">
+                        <input type="text" name="name" required placeholder="Seu Nome">
                     </div>
+
                     <div class="input-group">
                         <input type="email" name="email" required placeholder="Seu E-mail">
                     </div>
+
                     <div class="input-group">
-                        <textarea name="mensagem" required placeholder="Fale sobre o seu projeto..."></textarea>
+                        <textarea name="message" required placeholder="Fale sobre o seu projeto..."></textarea>
                     </div>
-                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
-                </form>
+
+                <button type="submit" class="btn-primary">Enviar Mensagem</button>
+            </form>
             </div>
         </section>
 
